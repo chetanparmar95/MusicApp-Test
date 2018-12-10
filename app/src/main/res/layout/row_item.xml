@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.musicapp.model.Track" />
+
+        <variable
+            name="callback"
+            type="com.musicapp.ui.dashboard.OnTrackClickListener" />
+
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="2dp"
+        android:layout_margin="3dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:onClick="@{() -> callback.onProductClicked(model,position)}">
+
+            <ImageView
+                android:id="@+id/imageViewTrack"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@android:drawable/btn_star"
+                android:layout_margin="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:loadImg="@{model.artworkUrl60}" />
+
+            <TextView
+                android:id="@+id/textViewTrackTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:singleLine="true"
+                android:text="@{model.trackName}"
+                android:textColor="@color/textColor"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewTrack"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Track name" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{model.getPrice()}"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewTrack"
+                app:layout_constraintTop_toBottomOf="@id/textViewTrackTitle"
+                tools:text="1,564" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</layout>
