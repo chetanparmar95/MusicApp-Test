@@ -3,6 +3,7 @@ package com.musicapp.ui.dashboard;
 import android.Manifest;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -35,6 +36,7 @@ public class HomeActivity extends BaseActivity implements OnTrackClickListener{
         binding = DataBindingUtil.setContentView(this,R.layout.activity_home);
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         fetchTrackList();
+
     }
 
     @Override

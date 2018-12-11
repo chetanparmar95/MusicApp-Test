@@ -3,18 +3,9 @@ package com.musicapp.utils;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.LruCache;
-
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 public class MemoryCache {
 
     private static final String TAG = "MemoryCache";
-
-
     private LruCache<String, Bitmap> mMemoryCache;
 
     // Get max available VM memory, exceeding this amount will throw an
@@ -47,7 +38,6 @@ public class MemoryCache {
     public Bitmap getBitmapFromMemCache(String key) {
         return mMemoryCache.get(key);
     }
-
 
     public void clear() {
         try{

@@ -49,7 +49,6 @@ public class ImageLoader {
         executorService=Executors.newFixedThreadPool(5);
     }
 
-
     public void displayImage(String url, ImageView imageView)
     {
         //Store image and url in Map
@@ -189,5 +188,4 @@ public class ImageLoader {
         //Clear cache directory downloaded images and stored data in maps
         memoryCache.clear();
     }
-
 }
