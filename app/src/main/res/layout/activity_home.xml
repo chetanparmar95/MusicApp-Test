@@ -3,7 +3,7 @@
     <data>
         <variable
             name="data"
-            type="java.util.ArrayList"/>
+            type="java.util.List"/>
         <variable
             name="callback"
             type="com.musicapp.ui.dashboard.OnTrackClickListener"/>
@@ -13,12 +13,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/mj"
     tools:context=".ui.dashboard.HomeActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@null"
         app:adapter="@{@layout/row_item}"
         app:itemlist="@{data}"
         app:listener="@{callback}"
