@@ -24,12 +24,14 @@
         app:cardElevation="2dp"
         android:layout_margin="3dp"
         app:cardPreventCornerOverlap="false"
+        app:cardBackgroundColor="@android:color/transparent"
         app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:background="#aa000000"
             android:onClick="@{() -> callback.onProductClicked(model,position)}">
 
             <ImageView

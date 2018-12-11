@@ -47,6 +47,13 @@ public class MySingleton {
         return mInstance;
     }
 
+    public static synchronized MySingleton getInstance() {
+        if (mInstance == null) {
+            throw new IllegalStateException("Called method on uninitialized model");
+        }
+        return mInstance;
+    }
+
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the

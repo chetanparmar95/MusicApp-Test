@@ -1,18 +1,13 @@
 package com.musicapp.ui.dashboard;
 
-import android.util.Log;
+import android.arch.lifecycle.LiveData;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.musicapp.model.ApiResource;
 import com.musicapp.model.Track;
-import com.musicapp.network.GsonRequest;
-
-import org.json.JSONObject;
+import com.musicapp.network.LiveDataCallAdapter;
+import com.musicapp.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +30,8 @@ public class HomeRepo {
         return homeRepo;
     }
 
-    public void getTrackList(){
-        JsonRequest<JSONObject> request = new JsonObjectRequest(Request.Method.GET, "", null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("Data", "onResponse: "+response.toString() );
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
+    public LiveData<ApiResource<List<Track>>> getTrackList(String query){
+        LiveDataCallAdapter<List<Track>> call = new LiveDataCallAdapter<>(new TypeToken<ApiResource<List<Track>>>(){}.getType());
+        return call.call(Request.Method.GET, Constants.BASE_URL+Constants.SEARCH_TRACK+"?term="+query);
     }
 }

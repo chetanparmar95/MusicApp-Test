@@ -2,10 +2,9 @@ package com.musicapp;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
-import android.widget.RatingBar;
-
 
 import com.musicapp.utils.BaseAdapter;
+import com.musicapp.utils.ImageLoader;
 
 import java.util.List;
 
@@ -32,8 +31,8 @@ public class BindingAdapter {
 
     @android.databinding.BindingAdapter("app:loadImg")
     public static void loadImg(ImageView imageView, String url) {
-//        if (url != null && !url.isEmpty())
-//            Picasso.get().load(url).into(imageView);
+        ImageLoader imageLoader = ((MusicApp)imageView.getContext().getApplicationContext()).getImageLoader();
+        imageLoader.displayImage(url,imageView);
     }
 
 

@@ -7,7 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.craftsvilla.BR;
+
+import com.musicapp.BR;
 
 import java.util.List;
 
@@ -79,8 +80,8 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(BaseAdapter.ViewHolder holder, int position) {
         T model = list.get(position);
-        holder.getBinding().setVariable(com.craftsvilla.BR.model, model);
-        holder.getBinding().setVariable(com.craftsvilla.BR.position, position);
+        holder.getBinding().setVariable(BR.model, model);
+        holder.getBinding().setVariable(BR.position, position);
         holder.getBinding().executePendingBindings();
     }
 

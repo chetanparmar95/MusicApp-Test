@@ -34,6 +34,7 @@ public class ApiResource<T> {
         status=Status.ERROR;
         msg = "";
         data=null;
+        res_status = false;
     }
 
     public ApiResource(ApiResource<T> response) {
