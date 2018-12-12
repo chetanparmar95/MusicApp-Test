@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.track_detail.TrackDetailActivity"/>
+        <activity android:name=".ui.track_detail.TrackDetailActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
     </application>
 
 </manifest>

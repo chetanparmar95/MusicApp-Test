@@ -3,10 +3,8 @@ package com.musicapp.utils;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 
 import com.musicapp.BR;
 
@@ -29,8 +27,6 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.ViewHolder>
 
     public void setData(List<T> data) {
         list = data;
-        if (list != null && list.size() > 0)
-            Log.d("mytag", "Adapter SETDATA DataType " + list.get(0).getClass().getSimpleName());
         notifyDataSetChanged();
     }
 

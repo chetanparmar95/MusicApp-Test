@@ -1,7 +1,6 @@
 package com.musicapp;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.musicapp.network.MySingleton;
 import com.musicapp.utils.ImageLoader;
@@ -12,32 +11,16 @@ import com.musicapp.utils.ImageLoader;
 
 public class MusicApp extends Application {
 
-    private static MusicApp mInstance = new MusicApp();
-    private static Context mAppContext;
-
     private ImageLoader imageLoader;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mInstance=this;
-        mAppContext=this.getApplicationContext();
         imageLoader = new ImageLoader(this);
-        MySingleton.getInstance(mAppContext);
+        MySingleton.getInstance(this);
     }
 
     public ImageLoader getImageLoader(){
         return imageLoader;
     }
-
-
-    public static MusicApp getInstance() {
-        return mInstance;
-    }
-
-    public static Context getAppContext() {
-        return mAppContext;
-    }
-
-
 }

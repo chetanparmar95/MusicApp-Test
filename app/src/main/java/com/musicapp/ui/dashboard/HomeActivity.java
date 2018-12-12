@@ -1,18 +1,17 @@
 package com.musicapp.ui.dashboard;
 
-import android.Manifest;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.NoConnectionError;
+import com.android.volley.TimeoutError;
 import com.musicapp.MusicApp;
 import com.musicapp.R;
 import com.musicapp.databinding.ActivityHomeBinding;
@@ -20,13 +19,11 @@ import com.musicapp.model.ApiResource;
 import com.musicapp.model.Status;
 import com.musicapp.model.Track;
 import com.musicapp.ui.track_detail.TrackDetailActivity;
-import com.musicapp.utils.BaseActivity;
 
 import java.util.List;
 
-public class HomeActivity extends BaseActivity implements OnTrackClickListener{
+public class HomeActivity extends AppCompatActivity implements OnTrackClickListener{
 
-    private static final int REQUEST_STORAGE_PERMISSION = 1000;
     private HomeViewModel homeViewModel;
     private ActivityHomeBinding binding;
 
@@ -62,6 +59,13 @@ public class HomeActivity extends BaseActivity implements OnTrackClickListener{
                             Log.e("Data", "onResponse: home " + listApiResource.data.get(i).getTrackName());
                             binding.setCallback(HomeActivity.this);
                             binding.setData(listApiResource.data);
+                        }
+                    }else{
+                        //checking type of error using VolleyError object
+                        if (listApiResource.error instanceof TimeoutError || listApiResource.error instanceof NoConnectionError) {
+                            Toast.makeText(HomeActivity.this, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(HomeActivity.this, getString(R.string.message_api_error), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

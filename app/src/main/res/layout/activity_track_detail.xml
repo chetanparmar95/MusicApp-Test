@@ -1,39 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout >
     <data>
         <variable
             name="data"
             type="com.musicapp.model.Track"/>
+        <import type="com.musicapp.utils.DateUtil"/>
     </data>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#735c5c"
-    tools:context="com.musicapp.ui.track_detail.TrackDetailActivity">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="120sp"
-        android:layout_height="120dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:loadImg="@{data.artworkUrl100}"
-        android:layout_marginTop="50dp"
-        />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/mj"
+        tools:context="com.musicapp.ui.track_detail.TrackDetailActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Track Title"
-        android:text="@{data.trackName}"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="5dp"
-        />
-</android.support.constraint.ConstraintLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_track_background"/>
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImg="@{data.artworkUrl100}" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{data.trackName}"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            tools:text="Track Title" />
+
+        <TextView
+            android:id="@+id/collectionname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{data.collectionName}"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Track Title Collection" />
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{`Artist: `+data.artistName}"
+            android:textColor="@color/colorTrackDetail"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/collectionname"
+            android:layout_marginStart="20dp"
+            tools:text="Artist: MJ" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{`Track Price: `+data.price}"
+            android:textColor="@color/colorTrackDetail"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artist"
+            android:layout_marginStart="20dp"
+            tools:text="Track Price: 1 USD" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:text="@{`Release Date: `+DateUtil.convertToLocal(data.releaseDate)}"
+            android:textColor="@color/colorTrackDetail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            android:layout_marginStart="20dp"
+            tools:text="Release Date: 12/10/1995" />
+
+        <ImageView
+            android:id="@+id/iv_play_pause"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_play"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seek_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_song_time"
+            app:layout_constraintStart_toEndOf="@+id/iv_play_pause"
+            app:layout_constraintTop_toTopOf="@id/iv_play_pause"
+            app:layout_constraintBottom_toBottomOf="@id/iv_play_pause"
+            />
+
+        <TextView
+            android:id="@+id/tv_song_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:0/0:0"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_play_pause"
+            app:layout_constraintStart_toEndOf="@+id/seek_bar"
+            app:layout_constraintBottom_toBottomOf="@id/iv_play_pause"
+            />
+    </android.support.constraint.ConstraintLayout>
 </layout>

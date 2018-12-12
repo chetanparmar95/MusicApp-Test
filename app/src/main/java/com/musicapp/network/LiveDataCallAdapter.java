@@ -18,14 +18,12 @@ package com.musicapp.network;
 
 
 import android.arch.lifecycle.LiveData;
-import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.musicapp.model.ApiResource;
 import com.musicapp.model.Status;
 
@@ -40,7 +38,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class LiveDataCallAdapter<R> extends LiveData<ApiResource<R>> {
     private final Type responseType;
-
     public LiveDataCallAdapter(Type responseType) {
         this.responseType = responseType;
     }

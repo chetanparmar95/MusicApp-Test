@@ -16,64 +16,87 @@
             type="java.lang.Integer" />
     </data>
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="2dp"
-        android:layout_margin="3dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardUseCompatPadding="true">
+        android:background="@android:color/transparent"
+        android:onClick="@{() -> callback.onProductClicked(model,position)}">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageviewtrack"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_margin="10dp"
+            android:padding="7dp"
+            android:src="@drawable/ic_placeholder"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImg="@{model.artworkUrl60}" />
+
+        <TextView
+            android:id="@+id/textViewTrackTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:background="#aa000000"
-            android:onClick="@{() -> callback.onProductClicked(model,position)}">
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{model.trackName}"
+            android:textColor="@color/colorTrackName"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/collectionname"
+            app:layout_constraintEnd_toStartOf="@id/time"
+            app:layout_constraintStart_toEndOf="@id/imageviewtrack"
+            app:layout_constraintTop_toTopOf="@id/imageviewtrack"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Track name" />
 
-            <ImageView
-                android:id="@+id/imageViewTrack"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@android:drawable/btn_star"
-                android:layout_margin="3dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:loadImg="@{model.artworkUrl60}" />
+        <TextView
+            android:id="@+id/collectionname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{model.getCollectionName()}"
+            android:textColor="@color/colorTrackCollectionName"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imageviewtrack"
+            app:layout_constraintEnd_toStartOf="@id/time"
+            app:layout_constraintStart_toEndOf="@id/imageviewtrack"
+            app:layout_constraintTop_toBottomOf="@id/textViewTrackTitle"
+            tools:text="Collection Name" />
 
-            <TextView
-                android:id="@+id/textViewTrackTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:ellipsize="end"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:singleLine="true"
-                android:text="@{model.trackName}"
-                android:textColor="@color/textColor"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageViewTrack"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Track name" />
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:text="@{model.getTime()}"
+            android:textColor="@color/colorTrackName"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imageviewtrack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageviewtrack"
+            tools:text="1:20" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@{model.getPrice()}"
-                android:textColor="@color/textColor"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageViewTrack"
-                app:layout_constraintTop_toBottomOf="@id/textViewTrackTitle"
-                tools:text="1,564" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageviewtrack"
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+            />
+
+    </android.support.constraint.ConstraintLayout>
 </layout>

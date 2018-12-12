@@ -1,21 +1,14 @@
 package com.musicapp.utils;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import com.musicapp.R;
+
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collections;
@@ -27,20 +20,20 @@ import java.util.concurrent.Executors;
 public class ImageLoader {
 
     // Initialize MemoryCache
-    MemoryCache memoryCache = new MemoryCache();
+    private MemoryCache memoryCache = new MemoryCache();
 
     //Create Map (collection) to store image and image url in key value pair
     private Map<ImageView, String> imageViews = Collections.synchronizedMap(
             new WeakHashMap<ImageView, String>());
-    ExecutorService executorService;
+    private ExecutorService executorService;
 
     //handler to display images in UI thread
-    Handler handler = new Handler();
+    private Handler handler = new Handler();
 
     private Context context;
 
     // default image show in list (Before online image download)
-    final int stub_id= android.R.drawable.star_on;
+    final int stub_id= R.drawable.ic_placeholder;
 
     public ImageLoader(Context context){
         this.context = context;

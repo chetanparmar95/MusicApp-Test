@@ -13,9 +13,55 @@ public class Track implements Parcelable{
     private String artworkUrl100;
     private String artworkUrl60;
     private String currency;
+    private String previewUrl;
     private String releaseDate;
     private String trackName;
     private float trackPrice;
+    private long trackTimeMillis;
+
+    protected Track(Parcel in) {
+        artistName = in.readString();
+        collectionName = in.readString();
+        artworkUrl100 = in.readString();
+        artworkUrl60 = in.readString();
+        currency = in.readString();
+        previewUrl = in.readString();
+        releaseDate = in.readString();
+        trackName = in.readString();
+        trackPrice = in.readFloat();
+        trackTimeMillis = in.readLong();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(artistName);
+        dest.writeString(collectionName);
+        dest.writeString(artworkUrl100);
+        dest.writeString(artworkUrl60);
+        dest.writeString(currency);
+        dest.writeString(previewUrl);
+        dest.writeString(releaseDate);
+        dest.writeString(trackName);
+        dest.writeFloat(trackPrice);
+        dest.writeLong(trackTimeMillis);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Track> CREATOR = new Creator<Track>() {
+        @Override
+        public Track createFromParcel(Parcel in) {
+            return new Track(in);
+        }
+
+        @Override
+        public Track[] newArray(int size) {
+            return new Track[size];
+        }
+    };
 
     public String getArtistName() {
         return artistName;
@@ -85,43 +131,27 @@ public class Track implements Parcelable{
         this.trackPrice = trackPrice;
     }
 
-    protected Track(Parcel in) {
-        artistName = in.readString();
-        collectionName = in.readString();
-        artworkUrl100 = in.readString();
-        artworkUrl60 = in.readString();
-        currency = in.readString();
-        releaseDate = in.readString();
-        trackName = in.readString();
-        trackPrice = in.readFloat();
+    public String getPreviewUrl() {
+        return previewUrl;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(artistName);
-        dest.writeString(collectionName);
-        dest.writeString(artworkUrl100);
-        dest.writeString(artworkUrl60);
-        dest.writeString(currency);
-        dest.writeString(releaseDate);
-        dest.writeString(trackName);
-        dest.writeFloat(trackPrice);
+    public void setPreviewUrl(String previewUrl) {
+        this.previewUrl = previewUrl;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public long getTrackTimeMillis() {
+        return trackTimeMillis;
     }
 
-    public static final Creator<Track> CREATOR = new Creator<Track>() {
-        @Override
-        public Track createFromParcel(Parcel in) {
-            return new Track(in);
-        }
+    public void setTrackTimeMillis(long trackTimeMillis) {
+        this.trackTimeMillis = trackTimeMillis;
+    }
 
-        @Override
-        public Track[] newArray(int size) {
-            return new Track[size];
-        }
-    };
+    public String getTime(){
+        int minutes = (int) ((trackTimeMillis / 1000)  / 60);
+        int seconds = (int) ((trackTimeMillis / 1000) % 60);
+        String sec=String.format("%02d",seconds);
+        return minutes+":"+sec;
+    }
+
 }

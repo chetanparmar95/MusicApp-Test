@@ -64,6 +64,7 @@ public class MySingleton {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
+        req.setShouldCache(false);
         getRequestQueue().add(req);
     }
 
