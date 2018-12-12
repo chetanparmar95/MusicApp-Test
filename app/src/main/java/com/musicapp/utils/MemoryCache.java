@@ -1,8 +1,8 @@
 package com.musicapp.utils;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.util.LruCache;
+
 public class MemoryCache {
 
     private static final String TAG = "MemoryCache";

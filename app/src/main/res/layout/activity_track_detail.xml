@@ -53,6 +53,9 @@
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="Track Title Collection" />

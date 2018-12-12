@@ -7,6 +7,10 @@
         <variable
             name="callback"
             type="com.musicapp.ui.dashboard.OnTrackClickListener"/>
+        <variable
+            name="show"
+            type="Boolean"/>
+        <import type="android.view.View"/>
     </data>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,6 +33,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tracks_not_found"
+        android:textSize="20sp"
+        android:visibility="@{show ? View.VISIBLE : View.GONE}"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 
